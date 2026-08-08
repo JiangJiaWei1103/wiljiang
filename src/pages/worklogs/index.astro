@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getWorklogs, formatDate, entryPath } from '../../lib/content';
+
+const worklogs = await getWorklogs();
+---
+
+<Base title="Worklog" description="Short, frequent worklog entries.">
+  <section class="wrap">
+    <h1 class="page-title">Worklog</h1>
+    <ul class="feed-list">
+      {
+        worklogs.map((entry) => (
+          <li class="feed-item">
+            <time datetime={entry.data.date.toISOString()}>
+              {formatDate(entry.data.date)}
+            </time>
+            <span class="badge">log</span>
+            <a href={entryPath('worklog', entry.id)}>{entry.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

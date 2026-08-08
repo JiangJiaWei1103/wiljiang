@@ -1,0 +1,25 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPosts, formatDate, entryPath } from '../../lib/content';
+
+const posts = await getPosts();
+---
+
+<Base title="Posts" description="Long-form writing.">
+  <section class="wrap">
+    <h1 class="page-title">Posts</h1>
+    <ul class="feed-list">
+      {
+        posts.map((entry) => (
+          <li class="feed-item">
+            <time datetime={entry.data.date.toISOString()}>
+              {formatDate(entry.data.date)}
+            </time>
+            <span class="badge badge--post">post</span>
+            <a href={entryPath('post', entry.id)}>{entry.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import { getFeed, formatDate, entryPath } from '../lib/content';
+import { BIO } from '../consts';
+
+const feed = await getFeed();
+---
+
+<Base>
+  <section class="wrap bio">
+    {BIO.map((line) => <p>{line}</p>)}
+  </section>
+
+  <section class="wrap">
+    <ul class="feed-list">
+      {
+        feed.map(({ type, entry }) => (
+          <li class="feed-item">
+            <time datetime={entry.data.date.toISOString()}>
+              {formatDate(entry.data.date)}
+            </time>
+            <span class={`badge badge--${type}`}>
+              {type === 'worklog' ? 'log' : 'post'}
+            </span>
+            <a href={entryPath(type, entry.id)}>{entry.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Base>

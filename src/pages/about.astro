@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+import { SOCIAL } from '../consts';
+---
+
+<Base title="About" description="Who I am and what this site is.">
+  <article class="wrap prose">
+    <h1 class="page-title">About</h1>
+    <p>
+      Hi — I'm <strong>Your Name</strong>. I work on things at the intersection of
+      software and systems, and I keep this site as a public worklog and notebook.
+    </p>
+    <p>
+      The <a href="/worklogs/">log</a> is short, frequent entries: what I changed,
+      what broke, what I learned. The <a href="/posts/">posts</a> are longer, more
+      considered write-ups. Everything is also available over
+      <a href="/rss.xml">RSS</a>.
+    </p>
+    <p>
+      Find me on <a href={SOCIAL.github}>GitHub</a> or <a href={SOCIAL.x}>X</a>.
+    </p>
+  </article>
+</Base>

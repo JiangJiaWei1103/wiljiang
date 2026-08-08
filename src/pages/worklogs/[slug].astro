@@ -1,0 +1,26 @@
+---
+import { render } from 'astro:content';
+import Entry from '../../layouts/Entry.astro';
+import { getWorklogs } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const worklogs = await getWorklogs();
+  return worklogs.map((entry) => ({
+    params: { slug: entry.id },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<Entry
+  title={entry.data.title}
+  date={entry.data.date}
+  type="worklog"
+  tags={entry.data.tags}
+  description={entry.data.description}
+>
+  <Content />
+</Entry>
