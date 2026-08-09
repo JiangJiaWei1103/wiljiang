@@ -19,9 +19,7 @@ const feed = await getFeed();
             <time datetime={entry.data.date.toISOString()}>
               {formatDate(entry.data.date)}
             </time>
-            <span class={`badge badge--${type}`}>
-              {type === 'worklog' ? 'log' : 'post'}
-            </span>
+            <span class={`badge badge--${type}`}>{type}</span>
             <a href={entryPath(type, entry.id)}>{entry.data.title}</a>
           </li>
         ))

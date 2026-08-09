@@ -23,7 +23,7 @@ export const BIO: string[] = [
 
 /** Primary navigation, rendered as: name + [log · posts · about · rss]. */
 export const NAV: { label: string; href: string }[] = [
-  { label: 'log', href: '/worklogs/' },
+  { label: 'log', href: '/log/' },
   { label: 'posts', href: '/posts/' },
   { label: 'about', href: '/about/' },
   { label: 'rss', href: '/rss.xml' },

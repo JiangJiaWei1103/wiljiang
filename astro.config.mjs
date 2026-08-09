@@ -7,9 +7,11 @@ import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  // IMPORTANT: set this to your production URL. It is used for canonical
-  // links, Open Graph URLs, and absolute links in the RSS feed.
-  site: 'https://example.com',
+  // Production URL — used for canonical links, Open Graph URLs, and absolute
+  // links in the RSS feed. On Vercel's free plan this is
+  // https://<project-name>.vercel.app. Keep this in sync with the name you give
+  // the Vercel project (here: "wiljiang"), or swap in a custom domain later.
+  site: 'https://wiljiang.vercel.app',
 
   markdown: {
     // Astro 7 configures Markdown plugins via a `unified()` processor.

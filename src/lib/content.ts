@@ -3,20 +3,20 @@ import { getCollection, type CollectionEntry } from 'astro:content';
 /** Drafts are visible in `astro dev` but excluded from production builds. */
 const includeDrafts = import.meta.env.DEV;
 
-export type Worklog = CollectionEntry<'worklogs'>;
+export type Log = CollectionEntry<'log'>;
 export type Post = CollectionEntry<'posts'>;
 
 export type FeedItem =
-  | { type: 'worklog'; entry: Worklog }
+  | { type: 'log'; entry: Log }
   | { type: 'post'; entry: Post };
 
 function byDateDesc<T extends { data: { date: Date } }>(a: T, b: T): number {
   return b.data.date.valueOf() - a.data.date.valueOf();
 }
 
-export async function getWorklogs(): Promise<Worklog[]> {
+export async function getLogs(): Promise<Log[]> {
   const entries = await getCollection(
-    'worklogs',
+    'log',
     ({ data }) => includeDrafts || !data.draft,
   );
   return entries.sort(byDateDesc);
@@ -32,17 +32,17 @@ export async function getPosts(): Promise<Post[]> {
 
 /** Unified, reverse-chronological feed mixing both collections. */
 export async function getFeed(): Promise<FeedItem[]> {
-  const [worklogs, posts] = await Promise.all([getWorklogs(), getPosts()]);
+  const [logs, posts] = await Promise.all([getLogs(), getPosts()]);
   const items: FeedItem[] = [
-    ...worklogs.map((entry): FeedItem => ({ type: 'worklog', entry })),
+    ...logs.map((entry): FeedItem => ({ type: 'log', entry })),
     ...posts.map((entry): FeedItem => ({ type: 'post', entry })),
   ];
   return items.sort((a, b) => byDateDesc(a.entry, b.entry));
 }
 
-/** URL for an entry, e.g. `/worklogs/set-up-the-blog/`. */
-export function entryPath(type: 'worklog' | 'post', id: string): string {
-  return `/${type === 'worklog' ? 'worklogs' : 'posts'}/${id}/`;
+/** URL for an entry, e.g. `/log/set-up-the-blog/`. */
+export function entryPath(type: 'log' | 'post', id: string): string {
+  return `/${type === 'log' ? 'log' : 'posts'}/${id}/`;
 }
 
 /** Human date, formatted in UTC so it never drifts a day across timezones. */

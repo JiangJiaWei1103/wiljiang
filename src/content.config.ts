@@ -12,8 +12,8 @@ const entrySchema = z.object({
 });
 
 // Short, frequent notes.
-const worklogs = defineCollection({
-  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/worklogs' }),
+const log = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/log' }),
   schema: entrySchema,
 });
 
@@ -23,4 +23,4 @@ const posts = defineCollection({
   schema: entrySchema,
 });
 
-export const collections = { worklogs, posts };
+export const collections = { log, posts };

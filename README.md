@@ -3,7 +3,7 @@
 A minimal, content-first personal blog built with [Astro](https://astro.build)
 and TypeScript. Fully static, **zero client-side JavaScript**.
 
-- Two content collections: **worklogs** (short, frequent) and **posts** (long-form).
+- Two content collections: **log** (short, frequent worklog entries) and **posts** (long-form).
 - Homepage: a 3-line bio + one reverse-chronological feed mixing both.
 - Markdown / MDX with LaTeX (KaTeX), GFM tables + footnotes, and dual-theme
   syntax highlighting (Shiki `github-light` / `github-dark`).
@@ -40,7 +40,7 @@ Drafts (`draft: true`) are visible in `npm run dev` but excluded from `build`.
 
 Add a Markdown (`.md`) or MDX (`.mdx`) file to:
 
-- `src/content/worklogs/` — short entries
+- `src/content/log/` — short entries
 - `src/content/posts/` — long-form
 
 The filename (without extension) becomes the URL slug. Frontmatter:
@@ -77,8 +77,8 @@ draft: false # optional, defaults to false
 | Path               | What                                             |
 | ------------------ | ------------------------------------------------ |
 | `/`                | Bio + mixed reverse-chronological feed           |
-| `/worklogs/`       | Worklog index                                    |
-| `/worklogs/[slug]` | A worklog entry                                  |
+| `/log/`            | Worklog index                                    |
+| `/log/[slug]`      | A worklog entry                                  |
 | `/posts/`          | Posts index                                      |
 | `/posts/[slug]`    | A post                                           |
 | `/about/`          | About page                                       |
@@ -99,7 +99,7 @@ Set your domain, update `site` in `astro.config.mjs` to match, and redeploy.
 ```
 src/
   content/
-    worklogs/          # short entries (.md / .mdx)
+    log/               # short entries (.md / .mdx)
     posts/             # long-form (.md / .mdx)
   content.config.ts    # collection schema
   consts.ts            # site name, bio, nav, social links

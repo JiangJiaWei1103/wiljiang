@@ -1,23 +1,23 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { getPosts, formatDate, entryPath } from '../../lib/content';
+import { getLogs, formatDate, entryPath } from '../../lib/content';
 
-const posts = await getPosts();
+const logs = await getLogs();
 ---
 
-<Base title="Posts" description="Long-form writing.">
+<Base title="Worklog" description="Short, frequent worklog entries.">
   <section class="wrap">
-    <h1 class="page-title">Posts</h1>
+    <h1 class="page-title">Worklog</h1>
     {
-      posts.length > 0 ? (
+      logs.length > 0 ? (
         <ul class="feed-list">
-          {posts.map((entry) => (
+          {logs.map((entry) => (
             <li class="feed-item">
               <time datetime={entry.data.date.toISOString()}>
                 {formatDate(entry.data.date)}
               </time>
-              <span class="badge badge--post">post</span>
-              <a href={entryPath('post', entry.id)}>{entry.data.title}</a>
+              <span class="badge">log</span>
+              <a href={entryPath('log', entry.id)}>{entry.data.title}</a>
             </li>
           ))}
         </ul>
