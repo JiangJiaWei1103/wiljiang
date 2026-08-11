@@ -32,5 +32,4 @@ export const NAV: { label: string; href: string }[] = [
 /** Footer links. */
 export const SOCIAL = {
   github: 'https://github.com/JiangJiaWei1103',
-  x: 'https://x.com/your-handle',
 } as const;
