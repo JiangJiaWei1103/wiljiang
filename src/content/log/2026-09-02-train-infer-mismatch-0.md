@@ -18,7 +18,7 @@ tags: ["rl"]
 - off-policyness: behavior policy $\mu$ used to generate rollouts differs from target policy $q$ being evaluated/optimized
     - train-infer mismatch: $\mu_{\theta} \neq q_{\theta}$
     - policy lag: stale weights in async RL -> $\theta_{\mu} \neq \theta_q$ 
-    - cache/state stateness: mix old cached states with newer weights, e,g., stale KV cache during in-flight weight update
-- **Problems:** bitwise-identical logprobs == 0 mismatch?
+    - cache/state staleness: mix old cached states with newer weights, e.g., stale KV cache during in-flight weight update
+- **PROBLEM:** bitwise-identical logprobs == 0 mismath?
 
 *Haven't had this feeling for such a long time. Excited about the new research direction, hoping I can build my own research taste someday.*
